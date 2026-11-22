@@ -1,0 +1,102 @@
+/* DuitKu Money Tycoon — tata letak & gaya (desktop: panel di kanan; HP: panel di bawah) */
+.ty{position:absolute;inset:0;display:block;background:linear-gradient(#bfe6ff,#e8f6ff);color:#111827;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;-webkit-user-select:none;user-select:none}
+.ty-main{position:absolute;inset:0;display:flex;min-width:0}
+.ty-view{position:relative;flex:1;min-width:0;min-height:0;overflow:hidden;touch-action:none}
+.ty-view canvas{display:block;touch-action:none;cursor:grab}
+.ty-view canvas:active{cursor:grabbing}
+.ty-hud{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+.ty-pill{display:flex;align-items:center;gap:9px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);box-shadow:0 2px 12px rgba(0,0,0,.12),inset 0 0 0 .5px rgba(255,255,255,.7)}
+.ty-pill b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1.1}
+.ty-pill small{display:block;font-size:11px;color:#6b7280;line-height:1.2}
+.ty-ico{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(#ffe27a,#f5b301);color:#7a5200}
+.ty-ico svg{width:18px;height:18px}
+.ty-ico.pulse{animation:typulse .35s}@keyframes typulse{50%{transform:scale(1.25)}}
+.ty-ring{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#34c759 var(--p,0%),rgba(0,0,0,.1) 0)}
+.ty-ring b{width:25px;height:25px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:13px}
+.ty-xp{width:90px;height:5px;border-radius:9px;background:rgba(0,0,0,.1);overflow:hidden;margin-top:3px}
+.ty-xp i{display:block;height:100%;width:0;background:#34c759;border-radius:9px;transition:width .3s}
+.ty-score{padding:7px 16px}
+.ty-hint,.ty-banner{position:absolute;left:50%;transform:translateX(-50%);top:64px;padding:8px 16px;border-radius:14px;background:rgba(17,24,39,.82);color:#fff;font-size:13px;font-weight:600;max-width:88%;text-align:center;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.ty-banner{top:110px;background:linear-gradient(135deg,#ff9f0a,#ff375f)}
+.ty-hint[hidden],.ty-banner[hidden]{display:none}
+.ty-tools{position:absolute;left:10px;right:10px;bottom:10px;display:flex;gap:8px;align-items:center;pointer-events:none}
+.ty-tools>*{pointer-events:auto}
+.ty-tool{position:relative;display:flex;align-items:center;gap:7px;border:0;border-radius:999px;padding:10px 16px;font:600 14px inherit;font-family:inherit;color:#fff;background:linear-gradient(#ffb340,#ff9500);box-shadow:0 4px 14px rgba(255,149,0,.45);cursor:pointer;transition:transform .15s}
+.ty-tool:active{transform:scale(.94)}
+.ty-tool svg{width:18px;height:18px}
+.ty-tool em{font-style:normal;position:absolute;top:-6px;right:-4px;min-width:20px;height:20px;border-radius:10px;background:#ff3b30;color:#fff;font-size:11px;display:grid;place-items:center;padding:0 5px}
+.ty-tool em[hidden]{display:none}
+.ty-promo{background:linear-gradient(#bf5af2,#8e44ec);box-shadow:0 4px 14px rgba(142,68,236,.45)}
+.ty-promo.on{background:linear-gradient(#34c759,#28a745);box-shadow:0 4px 14px rgba(52,199,89,.5)}
+.ty-promo.cool{background:#8e8e93;box-shadow:none;opacity:.8}
+.ty-zoom{margin-left:auto;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.ty-zoom button{width:40px;height:38px;border:0;background:none;color:#0a84ff;display:grid;place-items:center;cursor:pointer}
+.ty-zoom button+button{border-top:.5px solid rgba(0,0,0,.12)}
+.ty-zoom svg{width:18px;height:18px}
+/* panel */
+.ty-panel{width:340px;flex:none;display:flex;flex-direction:column;background:rgba(246,246,248,.92);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border-left:.5px solid rgba(0,0,0,.15)}
+.ty-tabs{display:flex;gap:4px;margin:10px;padding:3px;border-radius:11px;background:rgba(118,118,128,.14)}
+.ty-tabs button{position:relative;flex:1;border:0;background:none;padding:7px 4px;border-radius:9px;font:600 13px inherit;font-family:inherit;color:#3c3c43;cursor:pointer}
+.ty-tabs button.on,.ty-tabs button[aria-selected=true]{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);color:#000}
+.ty-tabs em{font-style:normal;margin-left:4px;background:#ff3b30;color:#fff;border-radius:9px;font-size:10px;padding:1px 6px}
+.ty-tabs em[hidden]{display:none}
+.ty-body{flex:1;overflow-y:auto;padding:2px 10px 16px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.ty-sec{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#6b7280;margin:12px 4px 6px}
+.ty-grid{display:flex;flex-direction:column;gap:8px}
+.ty-card,.ty-mis,.ty-det{display:flex;gap:11px;align-items:center;padding:10px;border-radius:14px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.ty-card.on{box-shadow:0 0 0 2px #0a84ff}
+.ty-card.lock{opacity:.55}
+.ty-card img{width:56px;height:56px;flex:none;border-radius:10px;background:#eef6ff;object-fit:contain}
+.ty-ico2{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;background:#eef0f5;flex:none}
+.ty-ico2 svg{width:28px;height:28px}
+.ty-ci{flex:1;min-width:0}
+.ty-ci b{font-size:14px;display:block}
+.ty-ci small,.ty-mt small{display:block;font-size:11.5px;color:#6b7280;line-height:1.35;margin-top:1px}
+.ty-meta{display:flex;gap:10px;margin-top:5px;font-size:12px;font-weight:600;color:#3c3c43;flex-wrap:wrap}
+.ty-cost{display:inline-flex;align-items:center;gap:4px}
+.ty-cost svg{width:13px;height:13px;color:#f5a400}
+.ty-cost.short{color:#ff3b30}
+.ty-b,.btn.ty-go{flex:none;border:0;border-radius:999px;padding:8px 15px;font:600 13px inherit;font-family:inherit;background:rgba(10,132,255,.12);color:#0a84ff;cursor:pointer;transition:transform .12s,opacity .2s}
+.ty-b.pri,.btn.ty-go{background:#0a84ff;color:#fff}
+.ty-b.short{opacity:.5}
+.ty-b.lock,.ty-b:disabled{background:rgba(118,118,128,.14);color:#8e8e93;cursor:default}
+.ty-b.ghost{background:rgba(118,118,128,.14);color:#3c3c43}
+.ty-b.danger{color:#ff3b30}
+.ty-b:active{transform:scale(.94)}
+.ty-mis{align-items:center}.ty-mis.ok{box-shadow:0 0 0 2px #34c759}
+.ty-mt{flex:1;min-width:0}.ty-mt b{font-size:13.5px}
+.ty-bar{height:6px;border-radius:9px;background:rgba(0,0,0,.09);overflow:hidden;margin-top:6px}
+.ty-bar i{display:block;height:100%;background:linear-gradient(90deg,#34c759,#30d158);border-radius:9px;transition:width .3s}
+.ty-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0}
+.ty-stats>*{background:#fff;border-radius:12px;padding:10px;font-size:12px;color:#6b7280}
+.ty-stats b{display:block;color:#111827;font-size:15px}
+.ty-achs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ty-ach{background:#fff;border-radius:12px;padding:10px;opacity:.5;font-size:12px}
+.ty-ach.on{opacity:1;box-shadow:inset 0 0 0 1.5px #ffb340}
+.ty-medal{font-size:22px}
+.ty-note,.ty-fine{font-size:12px;color:#6b7280;margin:8px 4px;line-height:1.4}
+.ty-link{background:none;border:0;color:#0a84ff;font:600 13px inherit;font-family:inherit;cursor:pointer}
+.ty-det{flex-direction:column;align-items:stretch}
+.ty-dt{font-weight:700}.ty-big{font-size:22px;font-weight:800}.ty-count{font-variant-numeric:tabular-nums}
+.ty-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.ty-stock{font-size:12px;color:#6b7280}
+/* overlay */
+.ty-ov{position:absolute;inset:0;z-index:5;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.ty-ov[hidden]{display:none}
+.ty-oc{max-width:380px;width:100%;background:rgba(255,255,255,.96);border-radius:24px;padding:24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:tyin .3s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes tyin{from{transform:scale(.88);opacity:0}}
+.ty-oc h2{margin:10px 0 6px;font-size:21px;letter-spacing:-.02em}
+.ty-oc p,.ty-oc li{font-size:13.5px;color:#3c3c43;line-height:1.45}
+.ty-oc ul{text-align:left;padding-left:18px;margin:10px 0 16px}
+.ty-oi{width:60px;height:60px;border-radius:16px;margin:0 auto;display:grid;place-items:center;background:linear-gradient(#ffe27a,#f5b301)}
+.ty-oi svg{width:32px;height:32px}
+.ty-go{padding:11px 30px!important;font-size:15px!important}
+/* HP & layar sempit: panel di bawah */
+@media (max-width:760px){
+  .ty-main{flex-direction:column}
+  .ty-panel{width:auto;height:44%;border-left:0;border-top:.5px solid rgba(0,0,0,.15);border-radius:18px 18px 0 0;margin-top:-14px;position:relative;z-index:2}
+  .ty-view{flex:1 1 56%}
+  .ty-pill b{font-size:15px}.ty-xp{width:60px}
+  .ty-hud{gap:6px}.ty-pill{padding:5px 11px 5px 6px}
+  .ty-tools{bottom:24px}
+}
+@media (prefers-color-scheme:dark){html[data-theme=dark] .ty-panel{background:rgba(28,28,30,.92)}html[data-theme=dark] .ty-card,html[data-theme=dark] .ty-mis,html[data-theme=dark] .ty-det,html[data-theme=dark] .ty-stats>*,html[data-theme=dark] .ty-ach{background:#2c2c2e;color:#f2f2f7}html[data-theme=dark] .ty-ci b,html[data-theme=dark] .ty-stats b{color:#f2f2f7}html[data-theme=dark] .ty-tabs button{color:#ebebf5}html[data-theme=dark] .ty-tabs button.on{background:#636366;color:#fff}}

@@ -1,0 +1,145 @@
+/* =====================================================================
+   DuitKu — lapisan desain ala Apple (macOS / iOS)
+   Dimuat SETELAH style.css, sebelum games.css / tycoon.css / feedback.css.
+   Bagian 1 = TOKEN (kontrak desain). Modul lain (feedback.css, dll.) hanya memakai token --ap-*.
+   ===================================================================== */
+
+/* ---------- 1. TOKEN ---------- */
+:root {
+  --ap-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+  --ap-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* permukaan (terang) */
+  --ap-bg: #f2f2f7;            /* latar halaman (systemGroupedBackground) */
+  --ap-card: #ffffff;          /* kartu / grup */
+  --ap-card-2: #f2f2f7;        /* area di dalam kartu */
+  --ap-fill: rgba(120, 120, 128, .12);   /* kontrol: segmented, field, chip */
+  --ap-fill-2: rgba(120, 120, 128, .18);
+  --ap-sep: rgba(60, 60, 67, .14);       /* garis tipis */
+  --ap-sep-strong: rgba(60, 60, 67, .29);
+  --ap-label: #000000;
+  --ap-label-2: rgba(60, 60, 67, .62);
+  --ap-label-3: rgba(60, 60, 67, .34);
+  --ap-material: rgba(249, 249, 252, .74);   /* sidebar, tab bar, toolbar (dengan blur) */
+  --ap-material-thick: rgba(255, 255, 255, .86);
+  --ap-scrim: rgba(0, 0, 0, .32);
+
+  /* warna sistem */
+  --ap-blue: #007aff;  --ap-green: #34c759;  --ap-red: #ff3b30;   --ap-orange: #ff9500;
+  --ap-yellow: #ffcc00; --ap-teal: #30b0c7;  --ap-indigo: #5856d6; --ap-purple: #af52de;
+  --ap-pink: #ff2d55;  --ap-mint: #00c7be;   --ap-gray: #8e8e93;
+  --ap-tint: var(--color-primary, #007aff);  /* warna aksen pilihan pengguna */
+  --ap-on-tint: var(--on-primary, #fff);
+
+  /* bentuk & gerak */
+  --ap-r-s: 10px; --ap-r-m: 14px; --ap-r-l: 20px; --ap-r-xl: 28px;
+  --ap-shadow-1: 0 0 0 .5px rgba(0, 0, 0, .05), 0 1px 2px rgba(0, 0, 0, .04);
+  --ap-shadow-2: 0 0 0 .5px rgba(0, 0, 0, .06), 0 6px 24px rgba(0, 0, 0, .08);
+  --ap-shadow-3: 0 0 0 .5px rgba(0, 0, 0, .08), 0 18px 60px rgba(0, 0, 0, .22);
+  --ap-spring: cubic-bezier(.32, .72, 0, 1);
+  --ap-ease: cubic-bezier(.25, .1, .25, 1);
+  --ap-safe-b: env(safe-area-inset-bottom, 0px);
+  --ap-safe-t: env(safe-area-inset-top, 0px);
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --ap-bg: #000000;
+  --ap-card: #1c1c1e;
+  --ap-card-2: #2c2c2e;
+  --ap-fill: rgba(120, 120, 128, .24);
+  --ap-fill-2: rgba(120, 120, 128, .32);
+  --ap-sep: rgba(84, 84, 88, .55);
+  --ap-sep-strong: rgba(84, 84, 88, .8);
+  --ap-label: #ffffff;
+  --ap-label-2: rgba(235, 235, 245, .62);
+  --ap-label-3: rgba(235, 235, 245, .3);
+  --ap-material: rgba(28, 28, 30, .72);
+  --ap-material-thick: rgba(44, 44, 46, .86);
+  --ap-scrim: rgba(0, 0, 0, .55);
+  --ap-blue: #0a84ff;  --ap-green: #30d158;  --ap-red: #ff453a;   --ap-orange: #ff9f0a;
+  --ap-yellow: #ffd60a; --ap-teal: #40c8e0;  --ap-indigo: #5e5ce6; --ap-purple: #bf5af2;
+  --ap-pink: #ff375f;  --ap-mint: #63e6e2;  --ap-gray: #98989d;
+  --ap-shadow-1: 0 0 0 .5px rgba(255, 255, 255, .06);
+  --ap-shadow-2: 0 0 0 .5px rgba(255, 255, 255, .08), 0 6px 24px rgba(0, 0, 0, .5);
+  --ap-shadow-3: 0 0 0 .5px rgba(255, 255, 255, .1), 0 18px 60px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+
+/* ---------- 2. PEMETAAN KE VARIABEL LAMA (agar seluruh aplikasi ikut berganti) ---------- */
+:root:root {
+  --color-background: var(--ap-bg);
+  --color-surface: var(--ap-card);
+  --color-text: var(--ap-label);
+  --color-text-muted: var(--ap-label-2);
+  --color-border: var(--ap-sep);
+  --color-income: var(--ap-green);
+  --color-expense: var(--ap-red);
+  --color-success: var(--ap-green);
+  --color-warn: var(--ap-orange);
+  --color-savings: var(--ap-indigo);
+  --color-transfer: var(--ap-teal);
+  --r: var(--ap-r-l);
+  --shadow: var(--ap-shadow-1);
+  font-family: var(--ap-font);
+}
+
+/* ---------- 3. KOMPONEN: sidebar macOS, tab bar iPhone, kartu, kontrol, sheet ---------- */
+html, body { font-family: var(--ap-font); background: var(--ap-bg); color: var(--ap-label); -webkit-font-smoothing: antialiased; letter-spacing: -.011em; }
+h1, h2, h3 { letter-spacing: -.022em; font-weight: 700; }
+h1 { font-size: clamp(28px, 3.4vw, 34px); }
+.muted { color: var(--ap-label-2) !important; }
+
+/* sidebar = material macOS */
+#side { background: var(--ap-material); -webkit-backdrop-filter: saturate(180%) blur(28px); backdrop-filter: saturate(180%) blur(28px); border-right: .5px solid var(--ap-sep); width: 244px; }
+#side .nav-gt { font-size: 11px; font-weight: 600; letter-spacing: .02em; text-transform: none; color: var(--ap-label-3); padding: 14px 10px 4px; }
+#side .nav button { border-radius: 8px; padding: 7px 10px; gap: 10px; font-size: 14px; font-weight: 500; color: var(--ap-label); box-shadow: none !important; transform: none !important; animation: none !important; }
+#side .nav button svg { width: 18px; height: 18px; color: var(--ap-tint); filter: none !important; transform: none !important; }
+#side .nav button:hover { background: var(--ap-fill); }
+#side .nav button.on { background: var(--ap-tint); color: var(--ap-on-tint); font-weight: 600; }
+#side .nav button.on svg { color: var(--ap-on-tint); }
+#side .me { border-top: .5px solid var(--ap-sep); }
+
+/* konten */
+#main { background: var(--ap-bg); }
+.card { background: var(--ap-card); border: 0 !important; border-radius: var(--ap-r-l); box-shadow: var(--ap-shadow-1); }
+.card:hover { transform: none; }
+.hero { border-radius: var(--ap-r-xl); }
+.hd h1 { font-weight: 800; }
+
+/* kontrol */
+.btn { border-radius: 12px; min-height: 44px; font-weight: 600; letter-spacing: -.01em; background: var(--ap-tint); color: var(--ap-on-tint); box-shadow: none; transition: transform .2s var(--ap-spring), opacity .2s, filter .2s; }
+.btn:active { transform: scale(.96); opacity: .85; }
+.btn.ghost { background: var(--ap-fill); color: var(--ap-tint); }
+.chip, .tabs button { border-radius: 999px; }
+.tabs { background: var(--ap-fill); border-radius: 10px; padding: 2px; border: 0; }
+.tabs button.on { background: var(--ap-card); color: var(--ap-label); box-shadow: 0 1px 3px rgba(0,0,0,.14); }
+input:not([type=checkbox]):not([type=radio]):not([type=range]), select, textarea { background: var(--ap-fill); border: 0 !important; border-radius: 11px; color: var(--ap-label); font-family: inherit; }
+input:focus, select:focus, textarea:focus { outline: 3px solid color-mix(in srgb, var(--ap-tint) 40%, transparent); outline-offset: 0; }
+.bar, .bar > i { border-radius: 999px; }
+
+/* sheet modal = lembar iOS */
+#modal { background: var(--ap-scrim); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+#modal .sheet { background: var(--ap-material-thick); -webkit-backdrop-filter: saturate(180%) blur(30px); backdrop-filter: saturate(180%) blur(30px); border: 0; border-radius: var(--ap-r-xl) var(--ap-r-xl) 0 0; box-shadow: var(--ap-shadow-3); }
+@media (min-width: 801px) { #modal { align-items: center; } #modal .sheet { border-radius: var(--ap-r-xl); max-width: 520px; } }
+#modal .mh { border-bottom: .5px solid var(--ap-sep); }
+#modal .mh button { background: var(--ap-fill); border-radius: 50%; width: 30px; height: 30px; color: var(--ap-label-2); }
+
+/* tab bar iPhone */
+#bnav { background: var(--ap-material); -webkit-backdrop-filter: saturate(180%) blur(28px); backdrop-filter: saturate(180%) blur(28px); border-top: .5px solid var(--ap-sep); padding-bottom: var(--ap-safe-b); }
+#bnav .tab, #bnav button { background: none !important; border-radius: 0; color: var(--ap-gray); font-size: 10px; font-weight: 500; gap: 2px; box-shadow: none; }
+#bnav .tab.on, #bnav button.on { color: var(--ap-tint); }
+#bnav svg { width: 25px; height: 25px; }
+
+/* FAB, toast, footer */
+#fab { background: var(--ap-tint); color: var(--ap-on-tint); box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+#toast { background: var(--ap-material-thick); color: var(--ap-label); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%); border-radius: 16px; box-shadow: var(--ap-shadow-2); }
+#copyright { color: var(--ap-label-3); background: transparent; }
+.msheet .mlist { background: var(--ap-card); border-radius: var(--ap-r-m); overflow: hidden; }
+.msheet .mrow { background: none; border: 0; border-bottom: .5px solid var(--ap-sep); }
+::-webkit-scrollbar { width: 10px; } ::-webkit-scrollbar-thumb { background: var(--ap-fill-2); border-radius: 10px; border: 3px solid transparent; background-clip: padding-box; }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.hero .muted,.hero small,.hero p{color:rgba(255,255,255,.66)!important}
+.rating-row{display:flex;gap:6px;flex-wrap:wrap}.rate-btn{border:0;border-radius:999px;padding:8px 14px;background:var(--ap-fill);color:var(--ap-label);font-weight:600}
